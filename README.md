@@ -69,7 +69,6 @@ npm run dev
 -   [Vue Router](https://router.vuejs.org/) – router for Vue.js.
 -   [Vuex](https://vuex.vuejs.org/) – a state manager.
 -   [Axios](https://axios-http.com/) - HTTP client.
--
 
 ## Build app in Docker locally
 
