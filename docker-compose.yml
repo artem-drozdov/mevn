@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+    mongodb:
+        container_name: app-mongodb
+        image: mongo:latest
+        restart: unless-stopped
+        env_file: ./.env
+        ports:
+            - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+        volumes:
+            - db:/data/db
+    client:
+        container_name: vue-client
+        depends_on:
+            - app
+        build: ./client
+        restart: unless-stopped
+        env_file: ./.env
+        ports:
+            - $CLIENT_LOCAL_PORT:$CLIENT_DOCKER_PORT
+        stdin_open: true
+        tty: true
+    app:
+        container_name: express-server
+        depends_on:
+            - mongodb
+        build: ./server
+        restart: unless-stopped
+        env_file: ./.env
+        ports:
+            - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+        environment:
+            - DB_HOST=mongodb
+            - DB_NAME=$MONGODB_DATABASE
+            - DB_PORT=$MONGODB_DOCKER_PORT
+            - NODE_LOCAL_PORT=$NODE_LOCAL_PORT
+            - JWT_SECRET_KEY=$JWT_SECRET_KEY
+            - JWT_EXPIRATION=$JWT_EXPIRATION
+            - JWT_REFRESH_EXPIRATION=$JWT_REFRESH_EXPIRATION
+            - CORS=$CORS
+        stdin_open: true
+        tty: true
+
+volumes:
+    db:
