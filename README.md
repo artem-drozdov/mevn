@@ -72,7 +72,8 @@ npm run dev
 
 ## Build app in Docker locally
 
-Fill ENV file in the root directory
+#### Fill ENV file in the root directory
+
 Run commands from root:
 
 ```
