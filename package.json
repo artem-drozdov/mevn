@@ -1,0 +1,23 @@
+{
+    "name": "mevn",
+    "version": "1.0.0",
+    "description": "Simple application for creating posts",
+    "main": "index.js",
+    "scripts": {
+        "postinstall": "(cd client && npm install) && (cd ../server && npm install)",
+        "dev": "concurrently \" cd client && npm run serve\" \"cd server && npm run dev\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/artem-drozdov/mevn.git"
+    },
+    "author": "artem-drozdov",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/artem-drozdov/mevn/issues"
+    },
+    "homepage": "https://github.com/artem-drozdov/mevn#readme",
+    "dependencies": {
+        "concurrently": "^7.6.0"
+    }
+}
